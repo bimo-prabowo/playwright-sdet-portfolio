@@ -59,8 +59,8 @@ playwright-sdet-portfolio/
 ├── package-lock.json
 ├── package.json
 ├── playwright.config.ts
-├── README.md
-└── tsconfig.json
+├── tsconfig.json
+└── README.md
 ```
 
 ## Setup
