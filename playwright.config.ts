@@ -4,7 +4,12 @@ import path from 'path';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-const requiredEnvVars = ['SAUCEDEMO_BASE_URL'];
+const requiredEnvVars = [
+  'SAUCEDEMO_BASE_URL',
+  'SAUCEDEMO_STANDARD_USER',
+  'SAUCEDEMO_LOCKED_OUT_USER',
+  'SAUCEDEMO_PASSWORD',
+];
 
 for (const envVar of requiredEnvVars) {
   if (!process.env[envVar]) {
