@@ -53,10 +53,14 @@ playwright-sdet-portfolio/
 │       ├── inventory.spec.ts
 │       └── login.spec.ts
 ├── .env.example
+├── .gitignore
 ├── .nvmrc
+├── LICENSE
+├── package-lock.json
 ├── package.json
 ├── playwright.config.ts
-└── README.md
+├── README.md
+└── tsconfig.json
 ```
 
 ## Setup
