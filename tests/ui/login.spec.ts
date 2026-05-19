@@ -1,20 +1,20 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../../pages/LoginPage';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/');
-  await expect(page.locator('[data-test="username"]')).toBeVisible();
+  const loginPage = new LoginPage(page);
+  await loginPage.goto();
 });
 
 test('should login successfully with valid credentials', async ({ page }) => {
-  const usernameInput = page.locator('[data-test="username"]');
-  const passwordInput = page.locator('[data-test="password"]');
-  const loginButton = page.locator('[data-test="login-button"]');
+  const loginPage = new LoginPage(page);
   const pageTitle = page.locator('[data-test="title"]');
   const cartLink = page.locator('[data-test="shopping-cart-link"]');
 
-  await usernameInput.fill(process.env.SAUCEDEMO_STANDARD_USER!);
-  await passwordInput.fill(process.env.SAUCEDEMO_PASSWORD!);
-  await loginButton.click();
+  await loginPage.login(
+    process.env.SAUCEDEMO_STANDARD_USER!,
+    process.env.SAUCEDEMO_PASSWORD!
+  );
 
   await expect(page).toHaveURL(/inventory\.html/);
   await expect(pageTitle).toHaveText('Products');
@@ -22,16 +22,13 @@ test('should login successfully with valid credentials', async ({ page }) => {
 });
 
 test('should show locked out error for locked out user', async ({ page }) => {
-  const usernameInput = page.locator('[data-test="username"]');
-  const passwordInput = page.locator('[data-test="password"]');
-  const loginButton = page.locator('[data-test="login-button"]');
-  const errorMessage = page.locator('[data-test="error"]');
+  const loginPage = new LoginPage(page);
 
-  await usernameInput.fill(process.env.SAUCEDEMO_LOCKED_OUT_USER!);
-  await passwordInput.fill(process.env.SAUCEDEMO_PASSWORD!);
-  await loginButton.click();
+  await loginPage.login(
+    process.env.SAUCEDEMO_LOCKED_OUT_USER!,
+    process.env.SAUCEDEMO_PASSWORD!
+  );
 
   await expect(page).not.toHaveURL(/inventory\.html/);
-  await expect(errorMessage).toBeVisible();
-  await expect(errorMessage).toContainText('Sorry, this user has been locked out.');
+  await loginPage.expectLockedOutError();
 });

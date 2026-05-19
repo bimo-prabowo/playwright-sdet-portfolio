@@ -1,18 +1,16 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../../pages/LoginPage';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/');
-  await expect(page.locator('[data-test="username"]')).toBeVisible();
-
-  const usernameInput = page.locator('[data-test="username"]');
-  const passwordInput = page.locator('[data-test="password"]');
-  const loginButton = page.locator('[data-test="login-button"]');
+  const loginPage = new LoginPage(page);
   const pageTitle = page.locator('[data-test="title"]');
   const cartLink = page.locator('[data-test="shopping-cart-link"]');
 
-  await usernameInput.fill(process.env.SAUCEDEMO_STANDARD_USER!);
-  await passwordInput.fill(process.env.SAUCEDEMO_PASSWORD!);
-  await loginButton.click();
+  await loginPage.goto();
+  await loginPage.login(
+    process.env.SAUCEDEMO_STANDARD_USER!,
+    process.env.SAUCEDEMO_PASSWORD!
+  );
 
   await expect(page).toHaveURL(/inventory\.html/);
   await expect(pageTitle).toHaveText('Products');
