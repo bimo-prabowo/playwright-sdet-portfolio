@@ -1,0 +1,23 @@
+{
+  "name": "playwright-sdet-portfolio",
+  "version": "1.0.0",
+  "description": "This repository demonstrates a production-style QA automation framework using Playwright, TypeScript, UI testing, API testing, test fixtures, reusable page objects, CI execution, and test reporting. It is designed to reflect real-world SDET practices used in cross-functional product teams.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bimo-prabowo/playwright-sdet-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bimo-prabowo/playwright-sdet-portfolio/issues"
+  },
+  "homepage": "https://github.com/bimo-prabowo/playwright-sdet-portfolio#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.0"
+  }
+}
