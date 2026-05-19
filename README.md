@@ -1,6 +1,6 @@
 # Playwright SDET Portfolio
 
-Enterprise-style test automation portfolio using **Playwright**, **TypeScript**, UI testing, API testing, environment-based configuration, cross-browser execution, and HTML reporting.
+Enterprise-style test automation portfolio using **Playwright**, **TypeScript**, UI testing, API testing, environment-based configuration, cross-browser execution, GitHub Actions CI, and HTML reporting.
 
 This repository demonstrates practical QA Automation / SDET skills through a maintainable test framework structure.
 
@@ -10,6 +10,7 @@ This repository demonstrates practical QA Automation / SDET skills through a mai
 - TypeScript
 - Node.js
 - Dotenv
+- GitHub Actions
 - SauceDemo for UI testing
 - DummyJSON for API testing
 
@@ -169,7 +170,7 @@ The test suite runs automatically on GitHub Actions for pushes and pull requests
 The workflow performs the following steps:
 
 - Checks out the repository
-- Sets up Node.js
+- Sets up Node.js using the project `.nvmrc`
 - Installs dependencies with `npm ci`
 - Installs Playwright browsers and system dependencies
 - Runs the Playwright test suite
@@ -258,5 +259,6 @@ This repository is part of my QA Automation / SDET portfolio. It demonstrates ho
 - API validation
 - Environment-based configuration
 - Cross-browser test execution
+- Continuous integration
 - Reporting and debugging support
 - Incremental framework refactoring
