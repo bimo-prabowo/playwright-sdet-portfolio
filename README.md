@@ -41,6 +41,9 @@ Current coverage:
 
 ```text
 playwright-sdet-portfolio/
+├── .github/
+│   └── workflows/
+│       └── playwright.yml
 ├── pages/
 │   └── LoginPage.ts
 ├── tests/
@@ -50,6 +53,7 @@ playwright-sdet-portfolio/
 │       ├── inventory.spec.ts
 │       └── login.spec.ts
 ├── .env.example
+├── .nvmrc
 ├── package.json
 ├── playwright.config.ts
 └── README.md
@@ -154,6 +158,19 @@ Current configuration includes:
 - Chromium and Firefox browser projects
 - Required environment variable validation
 
+## Continuous Integration
+
+The test suite runs automatically on GitHub Actions for pushes and pull requests to `main`.
+
+The workflow performs the following steps:
+
+- Checks out the repository
+- Sets up Node.js
+- Installs dependencies with `npm ci`
+- Installs Playwright browsers and system dependencies
+- Runs the Playwright test suite
+- Uploads the Playwright HTML report as an artifact
+
 ## Environment Variables
 
 The framework validates required environment variables before test execution.
@@ -222,7 +239,6 @@ Planned enhancements:
 - Add `InventoryPage` and `CartPage` objects when duplication increases
 - Add reusable test fixtures
 - Add test data factory utilities
-- Add GitHub Actions workflow
 - Add API client utility layer
 - Add tags for smoke, regression, UI, and API test groups
 - Add negative API test scenarios
