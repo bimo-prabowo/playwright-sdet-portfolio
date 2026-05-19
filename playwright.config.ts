@@ -9,6 +9,7 @@ const requiredEnvVars = [
   'SAUCEDEMO_STANDARD_USER',
   'SAUCEDEMO_LOCKED_OUT_USER',
   'SAUCEDEMO_PASSWORD',
+  'DUMMYJSON_BASE_URL',
 ];
 
 for (const envVar of requiredEnvVars) {
