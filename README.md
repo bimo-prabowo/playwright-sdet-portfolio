@@ -1,6 +1,6 @@
 # Playwright SDET Portfolio
 
-Enterprise-style test automation portfolio using **Playwright**, **TypeScript**, UI testing, API testing, environment-based configuration, cross-browser execution, GitHub Actions CI, and HTML reporting.
+Enterprise-style test automation portfolio using **Playwright**, **TypeScript**, UI testing, API testing, end-to-end testing, environment-based configuration, cross-browser execution, GitHub Actions CI, and HTML reporting.
 
 This repository demonstrates practical QA Automation / SDET skills through a maintainable test framework structure.
 
@@ -11,7 +11,7 @@ This repository demonstrates practical QA Automation / SDET skills through a mai
 - Node.js
 - Dotenv
 - GitHub Actions
-- SauceDemo for UI testing
+- SauceDemo for UI and E2E testing
 - DummyJSON for API testing
 
 ## Test Coverage
@@ -27,6 +27,13 @@ Current coverage:
 - Inventory page rendering after login
 - Product list visibility
 - Product detail validation for a sample inventory item
+
+### E2E Tests
+
+Target application: [SauceDemo](https://www.saucedemo.com/)
+
+Current coverage:
+
 - Add product to cart
 - Validate cart badge update
 - Validate cart page item details
@@ -49,10 +56,13 @@ playwright-sdet-portfolio/
 │   └── workflows/
 │       └── playwright.yml
 ├── pages/
+│   ├── InventoryPage.ts
 │   └── LoginPage.ts
 ├── tests/
 │   ├── api/
 │   │   └── products.api.spec.ts
+│   ├── e2e/
+│   │   └── cart.spec.ts
 │   └── ui/
 │       ├── inventory.spec.ts
 │       └── login.spec.ts
@@ -197,18 +207,29 @@ If any required variable is missing, the test run stops early with a clear error
 
 ## Page Object Model
 
-The project currently uses a Page Object for the SauceDemo login flow:
+The project currently uses Page Objects for repeated SauceDemo flows:
 
 ```text
 pages/LoginPage.ts
+pages/InventoryPage.ts
 ```
 
 Current responsibilities:
+
+### `LoginPage.ts`
 
 - Navigate to the login page
 - Fill username and password
 - Submit the login form
 - Validate locked-out user error
+
+### `InventoryPage.ts`
+
+- Validate inventory page load state
+- Locate products by product name
+- Add a product to cart
+- Validate cart badge count
+- Navigate to the cart page
 
 Additional Page Objects will be added when repeated page-level interactions emerge.
 
@@ -235,7 +256,8 @@ This project follows an incremental test automation approach:
 2. Identify repeated test actions.
 3. Refactor repeated flows into Page Objects.
 4. Add API coverage for service-level validation.
-5. Expand toward reusable fixtures, test data, and CI execution.
+5. Add E2E coverage for business-critical user journeys.
+6. Expand toward reusable fixtures, test data, and CI execution.
 
 The goal is to keep the framework practical, readable, and maintainable rather than over-engineered.
 
@@ -243,12 +265,12 @@ The goal is to keep the framework practical, readable, and maintainable rather t
 
 Planned enhancements:
 
-- Add cart and checkout E2E coverage
-- Add `InventoryPage` and `CartPage` objects when duplication increases
+- Add checkout E2E coverage
+- Add `CartPage` and `CheckoutPage` objects when duplication increases
 - Add reusable test fixtures
 - Add test data factory utilities
 - Add API client utility layer
-- Add tags for smoke, regression, UI, and API test groups
+- Add tags for smoke, regression, UI, API, and E2E test groups
 - Add negative API test scenarios
 - Add README badges for CI status
 
@@ -260,6 +282,7 @@ This repository is part of my QA Automation / SDET portfolio. It demonstrates ho
 - Stable selectors
 - Reusable page actions
 - API validation
+- E2E user journey validation
 - Environment-based configuration
 - Cross-browser test execution
 - Continuous integration
