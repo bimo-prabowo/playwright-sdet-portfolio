@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
+import { InventoryPage } from '../../pages/InventoryPage';
 
 test.beforeEach(async ({ page }) => {
   const loginPage = new LoginPage(page);
-  const pageTitle = page.locator('[data-test="title"]');
-  const cartLink = page.locator('[data-test="shopping-cart-link"]');
+  const inventoryPage = new InventoryPage(page);
 
   await loginPage.goto();
   await loginPage.login(
@@ -12,20 +12,14 @@ test.beforeEach(async ({ page }) => {
     process.env.SAUCEDEMO_PASSWORD!
   );
 
-  await expect(page).toHaveURL(/inventory\.html/);
-  await expect(pageTitle).toHaveText('Products');
-  await expect(cartLink).toBeVisible();
+  await inventoryPage.expectLoaded();
 });
 
 test('should display inventory items after login', async ({ page }) => {
-  const inventoryList = page.locator('[data-test="inventory-list"]');
-  const inventoryItems = page.locator('[data-test="inventory-item"]');
-  const backpackItem = inventoryItems.filter({
-    hasText: 'Sauce Labs Backpack',
-  });
+  const inventoryPage = new InventoryPage(page);
+  const backpackItem = inventoryPage.getProductByName('Sauce Labs Backpack');
 
-  await expect(inventoryList).toBeVisible();
-  await expect(inventoryItems).toHaveCount(6);
+  await expect(inventoryPage.inventoryItems).toHaveCount(6);
 
   await expect(backpackItem).toBeVisible();
   await expect(backpackItem.locator('[data-test="inventory-item-name"]')).toHaveText(
