@@ -27,6 +27,9 @@ Current coverage:
 - Inventory page rendering after login
 - Product list visibility
 - Product detail validation for a sample inventory item
+- Add product to cart
+- Validate cart badge update
+- Validate cart page item details
 
 ### API Tests
 
