@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { InventoryPage } from '../../pages/InventoryPage';
+import { CartPage } from '../../pages/CartPage';
 
 const productName = 'Sauce Labs Backpack';
 
@@ -13,6 +14,7 @@ const checkoutInfo = {
 test.beforeEach(async ({ page }) => {
   const loginPage = new LoginPage(page);
   const inventoryPage = new InventoryPage(page);
+  const cartPage = new CartPage(page);
 
   await loginPage.goto();
   await loginPage.login(
@@ -24,18 +26,15 @@ test.beforeEach(async ({ page }) => {
   await inventoryPage.addProductToCart(productName);
   await inventoryPage.expectCartBadgeCount(1);
   await inventoryPage.openCart();
-
-  await expect(page).toHaveURL(/cart\.html/);
-  await expect(page.locator('[data-test="title"]')).toHaveText('Your Cart');
-  await expect(page.locator('[data-test="item-quantity"]')).toHaveText('1');
-  await expect(page.locator('[data-test="inventory-item-name"]')).toHaveText(productName);
+  await cartPage.expectLoaded();
+  await cartPage.expectProductInCart(productName);
+  await cartPage.expectProductDescription('carry.allTheThings');
+  await cartPage.expectProductQuantity('1');
 });
 
 test('should complete checkout for Sauce Labs Backpack', async ({ page }) => {
-  await page.locator('[data-test="checkout"]').click();
-
-  await expect(page).toHaveURL(/checkout-step-one\.html/);
-  await expect(page.locator('[data-test="title"]')).toHaveText('Checkout: Your Information');
+  const cartPage = new CartPage(page);
+  await cartPage.proceedToCheckout();
 
   await page.locator('[data-test="firstName"]').fill(checkoutInfo.firstName);
   await page.locator('[data-test="lastName"]').fill(checkoutInfo.lastName);
@@ -44,12 +43,10 @@ test('should complete checkout for Sauce Labs Backpack', async ({ page }) => {
 
   await expect(page).toHaveURL(/checkout-step-two\.html/);
   await expect(page.locator('[data-test="title"]')).toHaveText('Checkout: Overview');
-  await expect(page.locator('[data-test="item-quantity"]')).toHaveText('1');
-  await expect(page.locator('[data-test="inventory-item-name"]')).toHaveText(productName);
-  await expect(page.locator('[data-test="inventory-item-desc"]')).toContainText(
-    'carry.allTheThings'
-  );
-  await expect(page.locator('[data-test="inventory-item-price"]')).toHaveText('$29.99');
+  await cartPage.expectProductInCart(productName);
+  await cartPage.expectProductDescription('carry.allTheThings');
+  await cartPage.expectProductQuantity('1');
+  await cartPage.expectProductPrice('$29.99');
 
   await expect(page.locator('[data-test="payment-info-value"]')).toHaveText('SauceCard #31337');
   await expect(page.locator('[data-test="shipping-info-value"]')).toHaveText(

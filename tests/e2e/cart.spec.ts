@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { InventoryPage } from '../../pages/InventoryPage';
+import { CartPage } from '../../pages/CartPage';
+
+const productName = 'Sauce Labs Backpack';
 
 test.beforeEach(async ({ page }) => {
   const loginPage = new LoginPage(page);
@@ -17,17 +20,14 @@ test.beforeEach(async ({ page }) => {
 
 test('should add product to cart and validate cart content', async ({ page }) => {
   const inventoryPage = new InventoryPage(page);
+  const cartPage = new CartPage(page);
 
-  await inventoryPage.addProductToCart('Sauce Labs Backpack');
+  await inventoryPage.addProductToCart(productName);
   await inventoryPage.expectCartBadgeCount(1);
   await inventoryPage.openCart();
-
-  await expect(page).toHaveURL(/cart\.html/);
-  await expect(page.locator('[data-test="title"]')).toHaveText('Your Cart');
-  await expect(page.locator('[data-test="item-quantity"]')).toHaveText('1');
-  await expect(page.locator('[data-test="inventory-item-name"]')).toHaveText('Sauce Labs Backpack');
-  await expect(page.locator('[data-test="inventory-item-desc"]')).toContainText(
-    'carry.allTheThings'
-  );
-  await expect(page.locator('[data-test="inventory-item-price"]')).toHaveText('$29.99');
+  await cartPage.expectLoaded();
+  await cartPage.expectProductInCart(productName);
+  await cartPage.expectProductDescription('carry.allTheThings');
+  await cartPage.expectProductQuantity('1');
+  await cartPage.expectProductPrice('$29.99');
 });
