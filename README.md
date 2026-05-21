@@ -1,5 +1,7 @@
 # Playwright SDET Portfolio
 
+[![Playwright Tests](https://github.com/bimo-prabowo/playwright-sdet-portfolio/actions/workflows/playwright.yml/badge.svg)](https://github.com/bimo-prabowo/playwright-sdet-portfolio/actions/workflows/playwright.yml)
+
 Enterprise-style test automation portfolio using **Playwright**, **TypeScript**, UI testing, API testing, end-to-end testing, environment-based configuration, cross-browser execution, GitHub Actions CI, and HTML reporting.
 
 This repository demonstrates practical QA Automation / SDET skills through a maintainable test framework structure.
@@ -37,6 +39,9 @@ Current coverage:
 - Add product to cart
 - Validate cart badge update
 - Validate cart page item details
+- Complete checkout flow
+- Validate checkout overview
+- Validate checkout confirmation
 
 ### API Tests
 
@@ -56,13 +61,15 @@ playwright-sdet-portfolio/
 │   └── workflows/
 │       └── playwright.yml
 ├── pages/
+│   ├── CartPage.ts
 │   ├── InventoryPage.ts
 │   └── LoginPage.ts
 ├── tests/
 │   ├── api/
 │   │   └── products.api.spec.ts
 │   ├── e2e/
-│   │   └── cart.spec.ts
+│   │   ├── cart.spec.ts
+│   │   └── checkout.spec.ts
 │   └── ui/
 │       ├── inventory.spec.ts
 │       └── login.spec.ts
@@ -212,6 +219,7 @@ The project currently uses Page Objects for repeated SauceDemo flows:
 ```text
 pages/LoginPage.ts
 pages/InventoryPage.ts
+pages/CartPage.ts
 ```
 
 Current responsibilities:
@@ -230,6 +238,15 @@ Current responsibilities:
 - Add a product to cart
 - Validate cart badge count
 - Navigate to the cart page
+
+### `CartPage.ts`
+
+- Validate cart page load state
+- Validate product name
+- Validate product description
+- Validate product quantity
+- Validate product price
+- Proceed to checkout
 
 Additional Page Objects will be added when repeated page-level interactions emerge.
 
@@ -265,14 +282,12 @@ The goal is to keep the framework practical, readable, and maintainable rather t
 
 Planned enhancements:
 
-- Add checkout E2E coverage
-- Add `CartPage` and `CheckoutPage` objects when duplication increases
+- Add `CheckoutPage` object when checkout interactions increase
 - Add reusable test fixtures
 - Add test data factory utilities
 - Add API client utility layer
 - Add tags for smoke, regression, UI, API, and E2E test groups
 - Add negative API test scenarios
-- Add README badges for CI status
 
 ## Purpose of This Repository
 
