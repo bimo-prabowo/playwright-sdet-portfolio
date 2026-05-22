@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
   await loginPage.goto();
 });
 
-test('should login successfully with valid credentials', async ({ page }) => {
+test('@ui @smoke should login successfully with valid credentials', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const pageTitle = page.locator('[data-test="title"]');
   const cartLink = page.locator('[data-test="shopping-cart-link"]');
@@ -21,7 +21,7 @@ test('should login successfully with valid credentials', async ({ page }) => {
   await expect(cartLink).toBeVisible();
 });
 
-test('should show locked out error for locked out user', async ({ page }) => {
+test('@ui should show locked out error for locked out user', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   await loginPage.login(

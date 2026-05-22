@@ -18,7 +18,7 @@ test.beforeEach(async ({ page }) => {
   await inventoryPage.expectLoaded();
 });
 
-test('should add product to cart and validate cart content', async ({ page }) => {
+test('@e2e @smoke should add product to cart and validate cart content', async ({ page }) => {
   const inventoryPage = new InventoryPage(page);
   const cartPage = new CartPage(page);
 

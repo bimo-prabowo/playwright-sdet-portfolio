@@ -15,7 +15,7 @@ test.beforeEach(async ({ page }) => {
   await inventoryPage.expectLoaded();
 });
 
-test('should display inventory items after login', async ({ page }) => {
+test('@ui @smoke should display inventory items after login', async ({ page }) => {
   const inventoryPage = new InventoryPage(page);
   const backpackItem = inventoryPage.getProductByName('Sauce Labs Backpack');
 

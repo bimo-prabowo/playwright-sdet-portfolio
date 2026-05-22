@@ -8,6 +8,7 @@
     "test:ui": "playwright test tests/ui",
     "test:api": "playwright test tests/api",
     "test:e2e": "playwright test tests/e2e",
+    "test:smoke": "playwright test --grep @smoke",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
     "report": "playwright show-report"

@@ -32,7 +32,7 @@ test.beforeEach(async ({ page }) => {
   await cartPage.expectProductQuantity('1');
 });
 
-test('should complete checkout for Sauce Labs Backpack', async ({ page }) => {
+test('@e2e @smoke should complete checkout for Sauce Labs Backpack', async ({ page }) => {
   const cartPage = new CartPage(page);
   await cartPage.proceedToCheckout();
 
