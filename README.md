@@ -148,6 +148,12 @@ Run E2E tests only:
 npm run test:e2e
 ```
 
+Run smoke tests only:
+
+```bash
+npm run test:smoke
+```
+
 Run tests in headed mode:
 
 ```bash
