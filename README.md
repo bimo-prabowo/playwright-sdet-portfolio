@@ -64,6 +64,9 @@ playwright-sdet-portfolio/
 │   ├── CartPage.ts
 │   ├── InventoryPage.ts
 │   └── LoginPage.ts
+├── test-data/
+│   ├── checkout.ts
+│   └── products.ts
 ├── tests/
 │   ├── api/
 │   │   └── products.api.spec.ts
@@ -271,6 +274,15 @@ To open the latest HTML report:
 npm run report
 ```
 
+## Test Data
+
+Reusable static test data is stored under `test-data/`.
+
+Current test data includes:
+
+- Product data for SauceDemo inventory and cart validation
+- Checkout information for SauceDemo checkout flow
+
 ## Current Test Strategy
 
 This project follows an incremental test automation approach:
@@ -290,7 +302,7 @@ Planned enhancements:
 
 - Add `CheckoutPage` object when checkout interactions increase
 - Add reusable test fixtures
-- Add test data factory utilities
+- Add dynamic test data factory utilities
 - Add API client utility layer
 - Add tags for smoke, regression, UI, API, and E2E test groups
 - Add negative API test scenarios
