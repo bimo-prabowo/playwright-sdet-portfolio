@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { InventoryPage } from '../../pages/InventoryPage';
 import { CartPage } from '../../pages/CartPage';
-import { products } from '../../test-data/Products';
+import { products } from '../../test-data/products';
 import { checkoutInfo } from '../../test-data/checkout';
 
 test.beforeEach(async ({ page }) => {
