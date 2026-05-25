@@ -2,14 +2,8 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { InventoryPage } from '../../pages/InventoryPage';
 import { CartPage } from '../../pages/CartPage';
-
-const productName = 'Sauce Labs Backpack';
-
-const checkoutInfo = {
-  firstName: 'Sample Firstname',
-  lastName: 'Sample Lastname',
-  postalCode: '12345',
-};
+import { products } from '../../test-data/Products';
+import { checkoutInfo } from '../../test-data/checkout';
 
 test.beforeEach(async ({ page }) => {
   const loginPage = new LoginPage(page);
@@ -23,13 +17,13 @@ test.beforeEach(async ({ page }) => {
   );
 
   await inventoryPage.expectLoaded();
-  await inventoryPage.addProductToCart(productName);
+  await inventoryPage.addProductToCart(products.backpack.name);
   await inventoryPage.expectCartBadgeCount(1);
   await inventoryPage.openCart();
   await cartPage.expectLoaded();
-  await cartPage.expectProductInCart(productName);
-  await cartPage.expectProductDescription('carry.allTheThings');
-  await cartPage.expectProductQuantity('1');
+  await cartPage.expectProductInCart(products.backpack.name);
+  await cartPage.expectProductDescription(products.backpack.description);
+  await cartPage.expectProductQuantity(products.backpack.quantity);
 });
 
 test('@e2e @smoke should complete checkout for Sauce Labs Backpack', async ({ page }) => {
@@ -43,16 +37,16 @@ test('@e2e @smoke should complete checkout for Sauce Labs Backpack', async ({ pa
 
   await expect(page).toHaveURL(/checkout-step-two\.html/);
   await expect(page.locator('[data-test="title"]')).toHaveText('Checkout: Overview');
-  await cartPage.expectProductInCart(productName);
-  await cartPage.expectProductDescription('carry.allTheThings');
-  await cartPage.expectProductQuantity('1');
-  await cartPage.expectProductPrice('$29.99');
+  await cartPage.expectProductInCart(products.backpack.name);
+  await cartPage.expectProductDescription(products.backpack.description);
+  await cartPage.expectProductQuantity(products.backpack.quantity);
+  await cartPage.expectProductPrice(products.backpack.price);
 
   await expect(page.locator('[data-test="payment-info-value"]')).toHaveText('SauceCard #31337');
   await expect(page.locator('[data-test="shipping-info-value"]')).toHaveText(
     'Free Pony Express Delivery!'
   );
-  await expect(page.locator('[data-test="subtotal-label"]')).toContainText('$29.99');
+  await expect(page.locator('[data-test="subtotal-label"]')).toContainText(products.backpack.price);
   await expect(page.locator('[data-test="tax-label"]')).toContainText('$2.40');
   await expect(page.locator('[data-test="total-label"]')).toContainText('$32.39');
 
