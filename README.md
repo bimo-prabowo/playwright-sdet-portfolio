@@ -304,7 +304,7 @@ Planned enhancements:
 - Add reusable test fixtures
 - Add dynamic test data factory utilities
 - Add API client utility layer
-- Add tags for smoke, regression, UI, API, and E2E test groups
+- Expand tagged test groups for regression and critical-path coverage
 - Add negative API test scenarios
 
 ## Purpose of This Repository
