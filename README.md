@@ -52,6 +52,9 @@ Current coverage:
 - Get product list
 - Get product by ID
 - Search products by keyword
+- Validate non-existing product ID error handling
+- Validate unmatched product search response
+- Validate invalid product path error handling
 
 ## Project Structure
 
@@ -305,7 +308,6 @@ Planned enhancements:
 - Add dynamic test data factory utilities
 - Add API client utility layer
 - Expand tagged test groups for regression and critical-path coverage
-- Add negative API test scenarios
 
 ## Purpose of This Repository
 
