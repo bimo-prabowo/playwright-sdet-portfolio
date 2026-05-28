@@ -72,7 +72,8 @@ playwright-sdet-portfolio/
 │   └── products.ts
 ├── tests/
 │   ├── api/
-│   │   └── products.api.spec.ts
+│   │   ├── products.api.spec.ts
+|   |   └── products-negative.api.spec.ts
 │   ├── e2e/
 │   │   ├── cart.spec.ts
 │   │   └── checkout.spec.ts
