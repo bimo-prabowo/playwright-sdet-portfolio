@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { ProductApiClient } from '../../utils/productApiClient';
 
 const baseUrl = process.env.DUMMYJSON_BASE_URL!;
 
 test('@api @smoke should get product list', async ({ request }) => {
-  const response = await request.get(`${baseUrl}/products`);
+  const productApiClient = new ProductApiClient(request, baseUrl);
+  const response = await productApiClient.getProducts();
   const responseBody = await response.json();
 
   expect(response.ok()).toBeTruthy();
@@ -14,7 +16,8 @@ test('@api @smoke should get product list', async ({ request }) => {
 });
 
 test('@api @smoke should get product by id', async ({ request }) => {
-  const response = await request.get(`${baseUrl}/products/1`);
+  const productApiClient = new ProductApiClient(request, baseUrl);
+  const response = await productApiClient.getProductById(1);
   const responseBody = await response.json();
 
   expect(response.ok()).toBeTruthy();
@@ -24,13 +27,9 @@ test('@api @smoke should get product by id', async ({ request }) => {
 });
 
 test('@api @smoke should search products by keyword', async ({ request }) => {
+  const productApiClient = new ProductApiClient(request, baseUrl);
   const searchKeyword = 'phone';
-
-  const response = await request.get(`${baseUrl}/products/search`, {
-    params: {
-      q: searchKeyword,
-    },
-  });
+  const response = await productApiClient.searchProducts(searchKeyword);
   const responseBody = await response.json();
 
   expect(response.ok()).toBeTruthy();
