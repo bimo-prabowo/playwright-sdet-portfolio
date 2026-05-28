@@ -79,6 +79,8 @@ playwright-sdet-portfolio/
 │   └── ui/
 │       ├── inventory.spec.ts
 │       └── login.spec.ts
+├── utils/
+│   └── productApiClient.ts
 ├── .env.example
 ├── .gitignore
 ├── .nvmrc
@@ -286,6 +288,16 @@ Current test data includes:
 - Product data for SauceDemo inventory and cart validation
 - Checkout information for SauceDemo checkout flow
 
+## API Client Utilities
+
+The project uses a lightweight API client utility for DummyJSON product endpoints.
+
+Current responsibilities:
+
+- Get product list
+- Get product by ID
+- Search products by keyword
+
 ## Current Test Strategy
 
 This project follows an incremental test automation approach:
@@ -306,7 +318,6 @@ Planned enhancements:
 - Add `CheckoutPage` object when checkout interactions increase
 - Add reusable test fixtures
 - Add dynamic test data factory utilities
-- Add API client utility layer
 - Expand tagged test groups for regression and critical-path coverage
 
 ## Purpose of This Repository
