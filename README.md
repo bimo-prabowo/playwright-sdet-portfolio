@@ -65,6 +65,7 @@ playwright-sdet-portfolio/
 │       └── playwright.yml
 ├── pages/
 │   ├── CartPage.ts
+│   ├── CheckoutPage.ts
 │   ├── InventoryPage.ts
 │   └── LoginPage.ts
 ├── test-data/
@@ -73,7 +74,7 @@ playwright-sdet-portfolio/
 ├── tests/
 │   ├── api/
 │   │   ├── products.api.spec.ts
-|   |   └── products-negative.api.spec.ts
+│   │   └── products-negative.api.spec.ts
 │   ├── e2e/
 │   │   ├── cart.spec.ts
 │   │   └── checkout.spec.ts
@@ -232,12 +233,33 @@ If any required variable is missing, the test run stops early with a clear error
 The project currently uses Page Objects for repeated SauceDemo flows:
 
 ```text
+pages/CartPage.ts
+pages/CheckoutPage.ts
 pages/LoginPage.ts
 pages/InventoryPage.ts
-pages/CartPage.ts
 ```
 
 Current responsibilities:
+
+### `CartPage.ts`
+
+- Validate cart page load state
+- Validate product name
+- Validate product description
+- Validate product quantity
+- Validate product price
+- Proceed to checkout
+
+### `CheckoutPage.ts`
+
+- Validate checkout information page load state
+- Fill checkout information
+- Continue to checkout overview
+- Validate payment information
+- Validate shipping information
+- Validate price calculations
+- Finish checkout
+- Validate checkout completion
 
 ### `LoginPage.ts`
 
@@ -254,14 +276,6 @@ Current responsibilities:
 - Validate cart badge count
 - Navigate to the cart page
 
-### `CartPage.ts`
-
-- Validate cart page load state
-- Validate product name
-- Validate product description
-- Validate product quantity
-- Validate product price
-- Proceed to checkout
 
 Additional Page Objects will be added when repeated page-level interactions emerge.
 
@@ -316,7 +330,6 @@ The goal is to keep the framework practical, readable, and maintainable rather t
 
 Planned enhancements:
 
-- Add `CheckoutPage` object when checkout interactions increase
 - Add reusable test fixtures
 - Add dynamic test data factory utilities
 - Expand tagged test groups for regression and critical-path coverage
