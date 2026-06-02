@@ -226,6 +226,16 @@ SAUCEDEMO_PASSWORD
 DUMMYJSON_BASE_URL
 ```
 
+## Code Quality
+
+The project includes ESLint and Prettier for static analysis and consistent formatting.
+
+Available commands:
+
+- `npm run lint`
+- `npm run format`
+- `npm run format:check`
+
 If any required variable is missing, the test run stops early with a clear error message.
 
 ## Page Object Model
@@ -275,7 +285,6 @@ Current responsibilities:
 - Add a product to cart
 - Validate cart badge count
 - Navigate to the cart page
-
 
 Additional Page Objects will be added when repeated page-level interactions emerge.
 
