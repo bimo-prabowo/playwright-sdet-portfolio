@@ -208,6 +208,8 @@ The workflow performs the following steps:
 - Checks out the repository
 - Sets up Node.js using the project `.nvmrc`
 - Installs dependencies with `npm ci`
+- Runs ESLint checks
+- Runs Prettier format checks
 - Installs Playwright browsers and system dependencies
 - Runs the Playwright test suite
 - Uploads the Playwright HTML report as an artifact
@@ -226,6 +228,8 @@ SAUCEDEMO_PASSWORD
 DUMMYJSON_BASE_URL
 ```
 
+If any required variable is missing, the test run stops early with a clear error message.
+
 ## Code Quality
 
 The project includes ESLint and Prettier for static analysis and consistent formatting.
@@ -235,8 +239,6 @@ Available commands:
 - `npm run lint`
 - `npm run format`
 - `npm run format:check`
-
-If any required variable is missing, the test run stops early with a clear error message.
 
 ## Page Object Model
 
