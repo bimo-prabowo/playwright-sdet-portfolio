@@ -11,10 +11,7 @@ test('@ui @smoke should login successfully with valid credentials', async ({ pag
   const pageTitle = page.locator('[data-test="title"]');
   const cartLink = page.locator('[data-test="shopping-cart-link"]');
 
-  await loginPage.login(
-    process.env.SAUCEDEMO_STANDARD_USER!,
-    process.env.SAUCEDEMO_PASSWORD!
-  );
+  await loginPage.login(process.env.SAUCEDEMO_STANDARD_USER!, process.env.SAUCEDEMO_PASSWORD!);
 
   await expect(page).toHaveURL(/inventory\.html/);
   await expect(pageTitle).toHaveText('Products');
@@ -24,10 +21,7 @@ test('@ui @smoke should login successfully with valid credentials', async ({ pag
 test('@ui should show locked out error for locked out user', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
-  await loginPage.login(
-    process.env.SAUCEDEMO_LOCKED_OUT_USER!,
-    process.env.SAUCEDEMO_PASSWORD!
-  );
+  await loginPage.login(process.env.SAUCEDEMO_LOCKED_OUT_USER!, process.env.SAUCEDEMO_PASSWORD!);
 
   await expect(page).not.toHaveURL(/inventory\.html/);
   await loginPage.expectLockedOutError();

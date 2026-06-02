@@ -38,7 +38,8 @@ test('@api @smoke should search products by keyword', async ({ request }) => {
   expect(responseBody.products.length).toBeGreaterThan(0);
 
   for (const product of responseBody.products) {
-    const searchableText = `${product.title} ${product.description} ${product.category}`.toLowerCase();
+    const searchableText =
+      `${product.title} ${product.description} ${product.category}`.toLowerCase();
     expect(searchableText).toContain(searchKeyword);
   }
 });

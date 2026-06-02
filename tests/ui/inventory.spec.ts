@@ -8,10 +8,7 @@ test.beforeEach(async ({ page }) => {
   const inventoryPage = new InventoryPage(page);
 
   await loginPage.goto();
-  await loginPage.login(
-    process.env.SAUCEDEMO_STANDARD_USER!,
-    process.env.SAUCEDEMO_PASSWORD!
-  );
+  await loginPage.login(process.env.SAUCEDEMO_STANDARD_USER!, process.env.SAUCEDEMO_PASSWORD!);
 
   await inventoryPage.expectLoaded();
 });
@@ -32,7 +29,5 @@ test('@ui @smoke should display inventory items after login', async ({ page }) =
   await expect(backpackItem.locator('[data-test="inventory-item-price"]')).toHaveText(
     products.backpack.price
   );
-  await expect(
-    backpackItem.locator('[data-test="add-to-cart-sauce-labs-backpack"]')
-  ).toBeVisible();
+  await expect(backpackItem.locator('[data-test="add-to-cart-sauce-labs-backpack"]')).toBeVisible();
 });

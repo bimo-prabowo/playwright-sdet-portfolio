@@ -9,10 +9,7 @@ test.beforeEach(async ({ page }) => {
   const inventoryPage = new InventoryPage(page);
 
   await loginPage.goto();
-  await loginPage.login(
-    process.env.SAUCEDEMO_STANDARD_USER!,
-    process.env.SAUCEDEMO_PASSWORD!
-  );
+  await loginPage.login(process.env.SAUCEDEMO_STANDARD_USER!, process.env.SAUCEDEMO_PASSWORD!);
 
   await inventoryPage.expectLoaded();
 });

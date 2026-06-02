@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { InventoryPage } from '../../pages/InventoryPage';
 import { CartPage } from '../../pages/CartPage';
@@ -12,10 +12,7 @@ test.beforeEach(async ({ page }) => {
   const cartPage = new CartPage(page);
 
   await loginPage.goto();
-  await loginPage.login(
-    process.env.SAUCEDEMO_STANDARD_USER!,
-    process.env.SAUCEDEMO_PASSWORD!
-  );
+  await loginPage.login(process.env.SAUCEDEMO_STANDARD_USER!, process.env.SAUCEDEMO_PASSWORD!);
 
   await inventoryPage.expectLoaded();
   await inventoryPage.addProductToCart(products.backpack.name);
@@ -40,7 +37,7 @@ test('@e2e @smoke should complete checkout for Sauce Labs Backpack', async ({ pa
   );
   await checkoutPage.continueToOverview();
 
-  await checkoutPage.expectOverviewPageLoaded();  
+  await checkoutPage.expectOverviewPageLoaded();
   await cartPage.expectProductInCart(products.backpack.name);
   await cartPage.expectProductDescription(products.backpack.description);
   await cartPage.expectProductQuantity(products.backpack.quantity);
