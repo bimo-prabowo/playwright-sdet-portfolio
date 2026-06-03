@@ -61,8 +61,10 @@ Current coverage:
 ```text
 playwright-sdet-portfolio/
 ├── .github/
-│   └── workflows/
-│       └── playwright.yml
+│   ├── workflows/
+│   │   ├── dependency-review.yml
+│   │   └── playwright.yml
+│   └── dependabot.yml
 ├── pages/
 │   ├── CartPage.ts
 │   ├── CheckoutPage.ts
@@ -323,6 +325,16 @@ Current responsibilities:
 - Get product list
 - Get product by ID
 - Search products by keyword
+
+## Dependency Maintenance
+
+The project uses Dependabot to monitor dependency updates for:
+
+- npm packages
+- GitHub Actions workflows
+
+Dependabot is configured to open weekly pull requests for available dependency updates.
+Pull requests are also checked with GitHub Dependency Review to detect vulnerable dependency changes.
 
 ## Current Test Strategy
 
